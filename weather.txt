@@ -1,0 +1,22 @@
+
+    <div class="jumbotron">
+         {% for item in weather_data%}
+
+        <div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="http://openweathermap.org/img/w/{{ item.icon}}.png" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{ item.city }}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{ item.description }}</li>
+    <li class="list-group-item">{{ item.temperature }}°F</li>
+
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+    </div>
+    {% endfor %}
+        </div>

@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'homepage.css' %}">
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">HOW'S WEATHER..??</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+<br>
+<div class="container">
+    {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+<div class="container">
+    <div class="jumbotron">
+         <form method="post">
+                {% csrf_token %}
+                 <center><input type="text" name="city"  placeholder="Enter City Name" ></center>
+                    <hr>
+                <center><input type="submit" value="Add city" class="btn btn-dark"></center>
+         </form>
+        <hr>
+       <div class="container">
+        <div class="row justify-content ">
+            {% for item in weather_data %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card" style="width: 20rem; height: 25rem;">
+                    <img class="card-img-top" src="http://openweathermap.org/img/w/{{ item.icon}}.png" alt="Sorab">
+                    <div class="card-body">
+                        <h5 class="card-title">City : {{ item.name }}</h5>
+                        <hr style="border: 2px solid black">
+                        <p class="card-text">
+                            Temp : {{ item.temprature }}°F
+                            <hr style="border: 1px solid black">
+                            Weather : {{ item.description }}
+                        <hr style="border: 1px solid black">
+                        </p>
+                        <center><a  href="{% url "weatherapp:delete" item.id %}" class="btn btn-danger">Delete</a></center>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
