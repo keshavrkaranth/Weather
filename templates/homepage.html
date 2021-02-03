@@ -38,11 +38,11 @@
          </form>
         <hr>
        <div class="container">
-        <div class="row justify-content ">
+        <div class="row ">
             {% for item in weather_data %}
             <div class="col-md-6 col-lg-4">
                 <div class="card" style="width: 20rem; height: 25rem;">
-                    <img class="card-img-top" src="http://openweathermap.org/img/w/{{ item.icon}}.png" alt="Sorab">
+                    <img class="card-img-top" src="http://openweathermap.org/img/w/{{ item.icon}}.png" alt="Sorab" style="width: 10rem;">
                     <div class="card-body">
                         <h5 class="card-title">City : {{ item.name }}</h5>
                         <hr style="border: 2px solid black">
